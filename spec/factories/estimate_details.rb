@@ -8,6 +8,6 @@ FactoryBot.define do
     margin_multiple { "9.99" }
     bid { "9.99" }
     estimate { nil }
-    estimate-category { nil }
+    estimate_category { nil }
   end
 end
