@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_job, except: [:index, :create]
+  before_action :authorize_job, only: [:update, :destroy]
 
   def index
     @jobs = Job.all
@@ -10,7 +11,9 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.create!(job_params.merge(user: current_user))
+    @job = Job.new(job_params.merge(user: current_user))
+    authorize @job
+    @job.save!
   end
 
   def update
@@ -29,5 +32,9 @@ class JobsController < ApplicationController
 
     def job_params
       params.require('job').permit(:name, :address, :description)
+    end
+
+    def authorize_job
+      authorize @job
     end
 end
