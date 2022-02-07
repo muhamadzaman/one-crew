@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       resources :estimate_details
     end
   end
+
+  resources :users, only: [:index, :show, :update]
 end

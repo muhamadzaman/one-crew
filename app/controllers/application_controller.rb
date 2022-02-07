@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
   include Pundit
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_validation_failed
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
@@ -11,6 +12,10 @@ class ApplicationController < ActionController::Base
   respond_to :json
 
   private
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    end
 
     def render_validation_failed(exception)
       render 'shared/validation_failed', locals: { exception: exception }, status: :bad_request

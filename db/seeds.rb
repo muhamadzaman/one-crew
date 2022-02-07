@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-['admin', 'client', 'contractor'].each { |role| Role.find_or_create_by!(name: role) }
+['admin', 'client', 'contractor', 'placeholder'].each { |role| Role.find_or_create_by!(name: role) }
 
 ['Labor', 'Materials', 'Equipment'].each { |category| EstimateCategory.find_or_create_by!(name: category) }
 

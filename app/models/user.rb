@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
                     uniqueness: true
   validates :password, presence: true, length: { minimum: 8 }, allow_blank: true
 
+  before_validation :set_role, on: :create
+
   def admin?
     role.name == 'admin'
   end
@@ -30,4 +32,9 @@ class User < ActiveRecord::Base
   def contractor?
     role.name == 'contractor'
   end
+
+  private
+    def set_role
+      self.role = Role.find_by(name: 'placeholder')
+    end
 end
