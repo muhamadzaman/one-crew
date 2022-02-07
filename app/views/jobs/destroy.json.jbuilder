@@ -1,0 +1,2 @@
+
+json.message 'Job deleted'
