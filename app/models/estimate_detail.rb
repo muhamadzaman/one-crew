@@ -1,8 +1,7 @@
 class EstimateDetail < ApplicationRecord
   belongs_to :estimate
-  belongs_to :estimate_category
 
-  validates :job, :units, :rate, :cost, presence: true
+  validates :job, :units, :rate, :cost, :estimate_category, :unit_of_measure, presence: true
 
   before_save :calculate_bid
 

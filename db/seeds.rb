@@ -8,11 +8,15 @@
 
 ['admin', 'client', 'contractor', 'placeholder'].each { |role| Role.find_or_create_by!(name: role) }
 
-['Labor', 'Materials', 'Equipment'].each { |category| EstimateCategory.find_or_create_by!(name: category) }
-
-# Users
-admin = User.find_by(name: 'admin')
-role = Role.find_by(name: 'admin')
-admin ||= User.create(role: role, email: 'admin@example.com', name: 'admin', nickname: 'admin')
-admin.update(password: 'defaultpass', password_confirmation: 'defaultpass')
-admin.save!
+# User
+password = ENV['ADMIN_PASSWORD']
+email = ENV['ADMIN_EMAIL']
+if password && email
+  admin = User.find_by(name: 'admin')
+  role = Role.find_by(name: 'admin')
+  admin ||= User.create(role: role, email: email, name: 'admin', nickname: 'admin')
+  admin.update(password: password, password_confirmation: password)
+  admin.save!
+else
+  raise 'Please provide admin user password and email using ADMIN_PASSWORD and ADMIN_EMAIL'
+end

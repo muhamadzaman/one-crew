@@ -1,12 +1,12 @@
 
 user = job.user
 
-json.job do
-  json.user do
-    json.id user.id
-    json.email user.email
-  end
-  json.id job.id
-  json.name job.name
-  json.description job.description
+json.user do
+  json.id user.id
+  json.email user.email
+  json.role user.role.name
 end
+json.id job.id
+json.name job.name
+json.address job.address
+json.description job.description

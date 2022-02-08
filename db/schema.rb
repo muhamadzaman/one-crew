@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2022_02_07_091736) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "estimate_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_estimate_categories_on_name"
-  end
-
   create_table "estimate_details", force: :cascade do |t|
     t.string "job", null: false
     t.decimal "units", null: false
@@ -32,10 +24,10 @@ ActiveRecord::Schema.define(version: 2022_02_07_091736) do
     t.decimal "margin_multiple", null: false
     t.decimal "bid", null: false
     t.bigint "estimate_id", null: false
-    t.bigint "estimate_category_id", null: false
+    t.string "estimate_category", null: false
+    t.string "unit_of_measure", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["estimate_category_id"], name: "index_estimate_details_on_estimate_category_id"
     t.index ["estimate_id"], name: "index_estimate_details_on_estimate_id"
   end
 
@@ -95,7 +87,6 @@ ActiveRecord::Schema.define(version: 2022_02_07_091736) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "estimate_details", "estimate_categories"
   add_foreign_key "estimate_details", "estimates"
   add_foreign_key "estimates", "jobs"
   add_foreign_key "estimates", "users"

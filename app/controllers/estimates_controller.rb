@@ -45,7 +45,8 @@ class EstimatesController < ApplicationController
         :rate,
         :cost,
         :margin_multiple,
-        :estimate_category_id
+        :estimate_category,
+        :unit_of_measure
         ])
     end
 

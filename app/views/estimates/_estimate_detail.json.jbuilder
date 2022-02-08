@@ -6,3 +6,5 @@ json.rate estimate_detail.rate
 json.cost estimate_detail.cost
 json.bid estimate_detail.bid
 json.margin_multiple estimate_detail.margin_multiple
+json.estimate_category estimate_detail.estimate_category
+json.unit_of_measure estimate_detail.unit_of_measure

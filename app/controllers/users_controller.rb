@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params, except: [:index]
-  before_action :authorize_user, only: [:update]
+  before_action :set_user, except: [:index]
+  before_action :set_role, only: [:update]
+  before_action :authorize_user
 
   def index
     @users = User.all
@@ -16,9 +17,12 @@ class UsersController < ApplicationController
 
   private
 
-    def set_params
+    def set_user
       @user = User.find(params[:id])
-      @role = Role.find_by(name: user_params[:role])
+    end
+
+    def set_role
+      @role = Role.find_by(name: user_params[:role]) if user_params[:role]
     end
 
     def user_params

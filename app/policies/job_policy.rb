@@ -1,4 +1,4 @@
-class EstimatePolicy < ApplicationPolicy
+class JobPolicy < ApplicationPolicy
   def create?
     @user.admin? || @user.client?
   end

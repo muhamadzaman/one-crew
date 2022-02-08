@@ -9,7 +9,8 @@ class CreateEstimateDetails < ActiveRecord::Migration[6.1]
       t.decimal :margin_multiple, null: false
       t.decimal :bid, null: false
       t.references :estimate, null: false, foreign_key: true
-      t.references :estimate_category, null: false, foreign_key: true
+      t.string :estimate_category, null: false
+      t.string :unit_of_measure, null: false
 
       t.timestamps
     end
