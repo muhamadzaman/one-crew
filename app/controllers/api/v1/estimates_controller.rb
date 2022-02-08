@@ -1,18 +1,18 @@
-class EstimatesController < ApplicationController
+class Api::V1::EstimatesController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_job
   before_action :set_estimate, only: [:show, :update, :destroy]
   before_action :authorize_estimate, only: [:update, :destroy]
 
   def index
-    @estimates = Estimate.includes(:estimate_details).all
+    @estimates = Estimate.includes(:estimate_details)
   end
 
   def show
   end
 
   def create
-    @estimate = @job.estimates.build(estimate_params.merge(user_id: current_user.id))
+    @estimate = CreateEstimateInteractor.execute(@job, estimate_params, current_user)
     authorize @estimate
     @estimate.save!
   end
@@ -36,8 +36,7 @@ class EstimatesController < ApplicationController
     end
 
     def estimate_params
-      params.require('estimate').permit(:name, :description, estimate_details_attributes:
-        [
+      params.require(:estimate).permit(:name, :description, estimate_details_attributes: [
         :id,
         :job,
         :units,
@@ -47,7 +46,7 @@ class EstimatesController < ApplicationController
         :margin_multiple,
         :estimate_category,
         :unit_of_measure
-        ])
+      ])
     end
 
     def authorize_estimate

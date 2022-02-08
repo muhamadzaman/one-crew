@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_user, except: [:index]
   before_action :set_role, only: [:update]

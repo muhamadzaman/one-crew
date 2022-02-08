@@ -1,4 +1,4 @@
-class JobsController < ApplicationController
+class Api::V1::JobsController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_job, except: [:index, :create]
   before_action :authorize_job, only: [:update, :destroy]

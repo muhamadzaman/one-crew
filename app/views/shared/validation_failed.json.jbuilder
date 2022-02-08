@@ -1,4 +1,4 @@
-code ||= 1002
+code ||= 422
 
 json.message "Validations Failed"
 json.error do
