@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   mount_devise_token_auth_for 'User', at: 'auth'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -11,4 +10,6 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update]
     end
   end
+
+  root 'pages#index', as: :page_index
 end
