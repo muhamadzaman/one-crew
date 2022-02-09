@@ -20,3 +20,6 @@ if password && email
 else
   raise 'Please provide admin user password and email using ADMIN_PASSWORD and ADMIN_EMAIL'
 end
+
+User.create(email: 'client@example.com', name: 'client', password: '123456', role: Role.find_by(name: 'client'))
+User.create(email: 'contractor@example.com', name: 'contractor', password: '123456', role: Role.find_by(name: 'contractor'))

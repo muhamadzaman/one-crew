@@ -35,6 +35,6 @@ class User < ActiveRecord::Base
 
   private
     def set_role
-      self.role = Role.find_by(name: 'placeholder')
+      self.role ||= Role.find_by(name: 'placeholder')
     end
 end

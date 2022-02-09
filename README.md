@@ -28,7 +28,7 @@ brew install postgres
 
 ```
 
-git clone https://github.com/usmanasif/one-crew.git
+git clone https://github.com/usmanasifzai/one-crew.git
 
 cd one-crew
 ```
@@ -95,11 +95,11 @@ Post
 - To update role
 - URL
 ````
-http://localhost:3000/users/:user_id
+http://localhost:3000/api/v1/users/:user_id
 ````
 - Request method
 ```
-Post
+Patch
 ```
 - sample Payload
 ```
@@ -114,7 +114,7 @@ Post
 - Only users with role=client can create a job
 - URL
 ````
-http://localhost:3000/jobs
+http://localhost:3000/api/v1/jobs
 ````
 - Request method
 ```
@@ -134,7 +134,7 @@ Post
 - To create estimates
 - URL
 ````
-http://localhost:3000/jobs/1/estimates
+http://localhost:3000/api/v1/jobs/1/estimates
 ````
 - Request method
 ```
@@ -174,7 +174,7 @@ Post
 - To update estimate, id property should be for estimate and estimate_details if id is not given for estimate_details new estimate details will be created.
 - URL
 ````
-http://localhost:3000/jobs/1/estimates/1
+http://localhost:3000/api/v1/jobs/1/estimates/1
 ````
 - Request method
 ```
@@ -210,7 +210,7 @@ Patch
 - To get all estimates for a job
 - URL
 ````
-http://localhost:3000/jobs/1/estimates
+http://localhost:3000/api/v1/jobs/1/estimates
 ````
 - Request method
 ```
@@ -219,7 +219,7 @@ Get
 - To get one estimates for a job
 - URL
 ````
-http://localhost:3000/jobs/1/estimates/1
+http://localhost:3000/api/v1/jobs/1/estimates/1
 ````
 - Request method
 ```
@@ -229,9 +229,20 @@ Get
 - To delete estimates
 - URL
 ````
-http://localhost:3000/jobs/1/estimates/1
+http://localhost:3000/api/v1/jobs/1/estimates/1
 ````
 - Request method
 ```
 Delete
+```
+## To test
+- For testing I have created ruby script which contains some methods to perform CRUD
+- I have also added a rake task to test app with sample data
+- To run task
+```
+API_URL=api-url bundle exec rails one_crew:api_test
+```
+- Example
+```
+API_URL=http://localhost:3000 bundle exec rails one_crew:api_test
 ```
