@@ -1,1 +1,0 @@
-json.partial! 'api/v1/estimates/estimate', estimate: @estimate

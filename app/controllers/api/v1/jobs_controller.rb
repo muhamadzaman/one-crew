@@ -4,24 +4,38 @@ class Api::V1::JobsController < Api::V1::BaseController
   before_action :authorize_job, only: [:update, :destroy]
 
   def index
-    @jobs = Job.all
+    @jobs = Job.includes(user: :role)
+    render json: @jobs, each_serializer: JobSerializer
   end
 
   def show
+    render json: @job, serializer: JobSerializer
   end
 
   def create
     @job = Job.new(job_params.merge(user: current_user))
     authorize @job
-    @job.save!
+    if @job.save
+      render json: @job, serializer: JobSerializer
+    else
+      render json: @job.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    @job.update!(job_params)
+    if @job.update(job_params)
+      render json: @job, serializer: JobSerializer
+    else
+      render json: @job.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @job.destroy!
+    if @job.destroy
+      render json: @job, serializer: JobSerializer
+    else
+      render json: @job.errors, status: :unprocessable_entity
+    end
   end
 
   private

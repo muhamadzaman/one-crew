@@ -5,24 +5,38 @@ class Api::V1::EstimatesController < Api::V1::BaseController
   before_action :authorize_estimate, only: [:update, :destroy]
 
   def index
-    @estimates = Estimate.includes(:estimate_details)
+    @estimates = Estimate.includes(:estimate_details, :job, user: :role)
+    render json: @estimates, each_serializer: EstimateSerializer
   end
 
   def show
+    render json: @estimate, serializer: EstimateSerializer
   end
 
   def create
     @estimate = CreateEstimateInteractor.execute(@job, estimate_params, current_user)
     authorize @estimate
-    @estimate.save!
+    if @estimate.save
+      render json: @estimate, serializer: EstimateSerializer
+    else
+      render json: @estimate.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    @estimate.update!(estimate_params)
+    if @estimate.update(estimate_params)
+      render json: @estimate, serializer: EstimateSerializer
+    else
+      render json: @estimate.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @estimate.destroy!
+    if @estimate.destroy
+      render json: @estimate, serializer: EstimateSerializer
+    else
+      render json: @estimate.errors, status: :unprocessable_entity
+    end
   end
 
   private

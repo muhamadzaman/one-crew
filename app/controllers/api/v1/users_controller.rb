@@ -5,14 +5,20 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :authorize_user, only: [:update]
 
   def index
-    @users = User.all
+    @users = User.includes(:role)
+    render json: @users, each_serializer: UserSerializer
   end
 
   def show
+    render json: @user, serializer: UserSerializer
   end
 
   def update
-    @user.update!(role: @role)
+    if @user.update(role: @role)
+      render json: @user, each_serializer: UserSerializer
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private
