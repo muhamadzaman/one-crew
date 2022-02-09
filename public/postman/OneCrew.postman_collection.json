@@ -1,0 +1,406 @@
+{
+	"info": {
+		"_postman_id": "e5a1ceea-a7ea-4a32-b558-b61ca7d89a0b",
+		"name": "OneCrew",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "http://localhost:3000/auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"client@example.com\",\n    \"name\": \"cleint\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/sign_in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/auth/sign_in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"client@example.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/sign_in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/auth/sign_in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"contractor@example.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/sign_in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/v1/jobs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "uid",
+								"value": "client@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "spgzX9RvT8nxgs5Qxmv3Fg",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "VcDQEEunr11gVGgEMX6EqA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"job\": {\n        \"name\": \"first job\",\n        \"address\": \"santa clara\",\n        \"description\": \"first job\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "estimates",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/v1/jobs/2/estimates",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "uid",
+								"value": "contractor@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "alRBXJVJRSJW6HxxGMsPGQ",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "V-q-ZqfjV76f4U10VMfUTQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs/2/estimates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"2",
+								"estimates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/v1/jobs/2/estimates",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "uid",
+								"value": "contractor@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "alRBXJVJRSJW6HxxGMsPGQ",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "V-q-ZqfjV76f4U10VMfUTQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"estimate\": {\n        \"name\": \"estimate for first job\",\n        \"description\": \"estimate test\",\n        \"estimate_details_attributes\": [\n            {\n            \"job\": \"crew\",\n            \"units\": 3,\n            \"time\": 3,\n            \"rate\": 40,\n            \"cost\": 20,\n            \"margin_multiple\": 1.2,\n            \"estimate_category\": \"Labor\",\n            \"unit_of_measure\": \"hrs\"\n            },\n            {\n            \"job\": \"Jackhammer\",\n            \"units\": 3,\n            \"rate\": 40,\n            \"cost\": 20,\n            \"margin_multiple\": 1.2,\n            \"estimate_category\": \"Equipment\",\n            \"unit_of_measure\": \"hrs\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs/2/estimates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"2",
+								"estimates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/v1/jobs/2/estimates/15",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "uid",
+								"value": "contractor@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "alRBXJVJRSJW6HxxGMsPGQ",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "V-q-ZqfjV76f4U10VMfUTQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"estimate\": {\n        \"name\": \"estimate for first job\",\n        \"description\": \"estimate test\",\n        \"estimate_details_attributes\": [\n            {\n            \"id\": 34,\n            \"job\": \"crew\",\n            \"units\": 5,\n            \"time\": 5,\n            \"rate\": 40,\n            \"cost\": 20,\n            \"margin_multiple\": 1.2,\n            \"estimate_category\": \"Labor\",\n            \"unit_of_measure\": \"hrs\"\n            },\n            {\n            \"id\": 35,\n            \"job\": \"Jackhammer\",\n            \"units\": 3,\n            \"rate\": 40,\n            \"cost\": 20,\n            \"margin_multiple\": 1.2,\n            \"estimate_category\": \"Equipment\",\n            \"unit_of_measure\": \"hrs\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs/2/estimates/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"2",
+								"estimates",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/v1/jobs/2/estimates/15",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "uid",
+								"value": "contractor@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "alRBXJVJRSJW6HxxGMsPGQ",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "V-q-ZqfjV76f4U10VMfUTQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs/2/estimates/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"2",
+								"estimates",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/v1/jobs/2/estimates/10",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "uid",
+								"value": "contractor@example.com",
+								"type": "text"
+							},
+							{
+								"key": "client",
+								"value": "alRBXJVJRSJW6HxxGMsPGQ",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "V-q-ZqfjV76f4U10VMfUTQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/jobs/2/estimates/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"2",
+								"estimates",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

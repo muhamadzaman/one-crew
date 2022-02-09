@@ -246,3 +246,9 @@ API_URL=api-url bundle exec rails one_crew:api_test
 ```
 API_URL=http://localhost:3000 bundle exec rails one_crew:api_test
 ```
+## Postman
+- Added the postman collection in the repo.
+- Please import following collection in postman and test the app
+```
+public/postman/OneCrew.postman_collection.json
+```
