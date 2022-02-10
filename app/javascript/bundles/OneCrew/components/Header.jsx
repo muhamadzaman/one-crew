@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { logout } from "../services/AuthenticationForApiService.js";
+import { logout, canCreate } from "../services/AuthenticationForApiService.js";
 import history from "../history.js";
 
 const Header = ({ isUserLoggedIn, setIsUserLoggedIn }) => {
@@ -39,14 +39,16 @@ const Header = ({ isUserLoggedIn, setIsUserLoggedIn }) => {
           )}
           {isUserLoggedIn && (
             <>
-              <li>
-              <Link
-                className="nav-link"
-                to="/create-job"
-              >
-                Create job
-              </Link>
+            {
+              canCreate('client') && <li>
+                <Link
+                  className="nav-link"
+                  to="/create-job"
+                >
+                  Create job
+                </Link>
               </li>
+            }
               <li>
                 <Link
                   className="nav-link"

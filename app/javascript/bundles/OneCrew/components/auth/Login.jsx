@@ -1,7 +1,8 @@
-import { authenticate, registerSuccessfulLogin} from "../../services/AuthenticationForApiService.js";
+import { authenticate, registerSuccessfulLogin, setCurrentUserRole } from "../../services/AuthenticationForApiService.js";
 import { Form, Button, Container } from "react-bootstrap";
 import React, { useState } from "react";
 import history from "../../history.js";
+import { getCurrentUser } from "../../api/user.js";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -15,26 +16,28 @@ const Login = (props) => {
     }
   }
 
-  const loginClicked = () => {
-    authenticate(
-      email,
-      password
-    )
-      .then((response) => {
-        registerSuccessfulLogin(
-          email,
-          response.headers["access-token"],
-          response.headers["client"],
-          response.headers["uid"],
-          response.data.data.id
-        );
+  const loginClicked = async () => {
+    try {
+      let response = await authenticate(
+        email,
+        password
+      )
 
-        props.setIsUserLoggedIn(true);
-        history.push('/');
-      })
-      .catch((error) => {
-        console.log(error.response)
-      });
+      registerSuccessfulLogin(
+        email,
+        response.headers["access-token"],
+        response.headers["client"],
+        response.headers["uid"],
+        response.data.data.id
+      );
+      props.setIsUserLoggedIn(true);
+      let user = await getCurrentUser();
+
+      setCurrentUserRole(user);
+      history.push('/');
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

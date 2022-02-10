@@ -63,3 +63,20 @@ export async function updateEstimate(jobId, estimateId, formData) {
     throw(error)
   }
 }
+
+export async function deleteEstimate(jobId, estimateId) {
+  if (window.confirm('Are You sure!')){
+    try {
+      let res = await axios.delete(`${API_V1_URL}/jobs/${jobId}/estimates/${estimateId}`, {
+        headers: {
+          ...getCredentials(),
+          Accept: 'application/json'
+        }
+      });
+      return res.data;
+    } catch (error) {
+      console.log(error.response)
+      throw(error)
+    }
+  }
+}

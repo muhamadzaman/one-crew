@@ -2,6 +2,7 @@ import { Container, Table, Stack } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { getEstimates } from "../../api/estimate";
 import { Link, useParams } from 'react-router-dom';
+import { canCreate, canEdit } from "../../services/AuthenticationForApiService";
 
 const Estimates = () => {
   const { jobId } = useParams();
@@ -37,24 +38,24 @@ const Estimates = () => {
               </tr>
             </thead>
             <tbody>
-              {estimatesData.map((job) => {
-                let { id, name, total_cost, description, user: { email }} = job;
+              {estimatesData.map((estimate) => {
+                let { id, name, total_cost, description, user} = estimate;
                 return <tr key={id}>
                   <td>{id}</td>
                   <td>{name}</td>
                   <td>{description}</td>
-                  <td>{total_cost}</td>
-                  <td>{email}</td>
+                  <td>{total_cost} $</td>
+                  <td>{user.email}</td>
                   <td>
-                    <Link to={`/jobs/${jobId}/estimates/${id}`}>Detail</Link> {' '}
-                    <Link to={`/jobs/${jobId}/estimates/${id}/edit`}>Edit</Link>
+                    <Link to={`/jobs/${jobId}/estimates/${id}`}>Detail</Link> {'  '}
+                    { canEdit(user.id, 'contractor') && <Link to={`/jobs/${jobId}/estimates/${id}/edit`}>Edit</Link> } {'  '}
                   </td>
                 </tr>
               })}
             </tbody>
           </Table>
-          <Link to={`/jobs/${jobId}/estimates/new`}>Create Estimate</Link> {' '}
-          <Link to={'/jobs'}>jobs list</Link>
+          { canCreate('contractor') && <Link to={`/jobs/${jobId}/estimates/new`}>Create Estimate</Link> } {'  '}
+          <Link to={'/'}>jobs list</Link>
         </Container>
       </Stack>
     );

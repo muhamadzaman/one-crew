@@ -48,7 +48,6 @@ const EditEstimate = (props) => {
         history.push(`/jobs/${jobId}/estimates/${estimateId}`);
       })
       .catch((error) => {
-        debugger
         setNameError(error.response.data.error.fields['name']);
       });
   }
