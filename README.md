@@ -252,3 +252,15 @@ API_URL=http://localhost:3000 bundle exec rails one_crew:api_test
 ```
 public/postman/OneCrew.postman_collection.json
 ```
+## Frontend UI
+- I have created front in react
+- It requires Node 14
+- Please run following command to run
+```
+yarn install
+rails s
+```
+- Visit app ie
+```
+http://localhost:3000
+```
