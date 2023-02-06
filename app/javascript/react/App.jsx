@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Dashboard from './components/Dashboard'
-import { isUserLoggedIn } from "./services/AuthenticationForApiService.js";
+import { isUserLoggedIn } from './services/AuthenticationForApiService.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-const OneCrew = () => {
+const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const OneCrew = () => {
   )
 };
 
-export default OneCrew;
+export default App;

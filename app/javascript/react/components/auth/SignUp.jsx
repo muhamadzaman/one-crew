@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { APP_URL } from "../../Constants";
-import { Form, Button, Container } from "react-bootstrap";
-import { registerSuccessfulLogin } from "../../services/AuthenticationForApiService.js";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { APP_URL } from '../../Constants';
+import { Form, Button, Container } from 'react-bootstrap';
+import { registerSuccessfulLogin } from '../../services/AuthenticationForApiService.js';
 import FormInput from '../FormInput';
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
       hasFailed: false,
       showSuccessMessage: false,
-      emailError: "",
+      emailError: '',
     };
     this.signUp = this.signUp.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,13 +35,13 @@ class SignUp extends Component {
     };
 
     axios
-      .post(APP_URL + "/auth", data)
+      .post(APP_URL + '/auth', data)
       .then((response) => {
         registerSuccessfulLogin(
-          response.headers["uid"],
-          response.headers["access-token"],
-          response.headers["client"],
-          response.headers["uid"],
+          response.headers['uid'],
+          response.headers['access-token'],
+          response.headers['client'],
+          response.headers['uid'],
           response.data.data.id
         );
         this.props.history.push('/');
@@ -49,10 +49,10 @@ class SignUp extends Component {
       .catch((error) => {
         this.setState({
           hasFailed: false,
-          emailError: error.response.data.errors["email"],
-          passwordError: error.response.data.errors["password"],
+          emailError: error.response.data.errors['email'],
+          passwordError: error.response.data.errors['password'],
           confirmPasswordError:
-            error.response.data.errors["password_confirmation"],
+            error.response.data.errors['password_confirmation'],
         });
       });
   };
@@ -67,7 +67,7 @@ class SignUp extends Component {
           <FormInput type={'text'} label={'Name'} placeholder={'Name'} name={'name'} value={name} onChange={this.handleChange}/>
           <FormInput type={'password'} label={'Password'} placeholder={'Password'} name={'password'} value={password} onChange={this.handleChange} error={passwordError} />
           <FormInput type={'password'} label={'Password'} placeholder={'Password'} name={'confirmPassword'} value={confirmPassword} onChange={this.handleChange} error={confirmPasswordError} />
-          <Button variant="primary" type="button" onClick={this.signUp}>
+          <Button variant='primary' type='button' onClick={this.signUp}>
             Signup
           </Button>
         </Form>

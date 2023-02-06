@@ -5,7 +5,7 @@ class Api::V1::EstimatesController < Api::V1::BaseController
   before_action :authorize_estimate, only: [:update, :destroy]
 
   def index
-    @estimates = Estimate.includes(:estimate_details, :job, user: :role)
+    @estimates = @job.estimates.includes(:estimate_details, :job, user: :role)
     render json: @estimates, each_serializer: EstimateSerializer
   end
 

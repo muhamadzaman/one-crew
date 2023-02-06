@@ -1,8 +1,8 @@
-import { Container, Table, Stack } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import { getEstimates } from "../../api/estimate";
+import { Container, Table, Stack } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { getEstimates } from '../../api/estimate';
 import { Link, useParams } from 'react-router-dom';
-import { canCreate, canEdit } from "../../services/AuthenticationForApiService";
+import { canCreate, canEdit } from '../../services/AuthenticationForApiService';
 
 const Estimates = () => {
   const { jobId } = useParams();
@@ -15,10 +15,10 @@ const Estimates = () => {
 
     return (
       <Stack gap={3}>
-        <Container className="mt-3">
-          <Stack direction="horizontal" gap={3}>
+        <Container className='mt-3'>
+          <Stack direction='horizontal' gap={3}>
             <div>Total Estimates: { estimatesData.length }</div>
-            <div className="ms-auto">
+            <div className='ms-auto'>
             </div>
           </Stack>
         </Container>

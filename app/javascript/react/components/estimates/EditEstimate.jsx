@@ -1,10 +1,10 @@
-import { Form, Button, Container } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
-import history from "../../history.js";
+import { Form, Button, Container } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import history from '../../history.js';
 import FormInput from '../FormInput';
-import { getEstimate, updateEstimate } from "../../api/estimate";
-import { Link, useParams } from 'react-router-dom';
-import EstimateDetailForm from "./EstimateDetailForm.jsx";
+import { getEstimate, updateEstimate } from '../../api/estimate';
+import { useParams } from 'react-router-dom';
+import EstimateDetailForm from './EstimateDetailForm.jsx';
 
 const initialDetail = {
   key: 1,
@@ -44,7 +44,7 @@ const EditEstimate = (props) => {
 
   const onSubmit = () => {
     updateEstimate(jobId, estimateId, { ...estimateData, estimate_details_attributes: estimateDetailsData })
-      .then((response) => {
+      .then(() => {
         history.push(`/jobs/${jobId}/estimates/${estimateId}`);
       })
       .catch((error) => {
@@ -61,26 +61,26 @@ const EditEstimate = (props) => {
   return (
     <Container>
       <Form>
-          <FormInput type={'input'} label={'Name'} placeholder={'Enter name'} name={'name'} value={name} onChange={onChange}/>
-          <FormInput type={'input'} label={'Description'} placeholder={'Description'} name={'description'} value={description} onChange={onChange}/>
-          <h4>Estimate Details</h4>
-          {estimateDetailsData.map(detail =>(
-            <>
-              <EstimateDetailForm key={detail.key} recordKey={detail.key} estimateDetails={estimateDetailsData} setEstimateDetailData={setEstimateDetailData}></EstimateDetailForm>
-            </>
-          ))}
-          <Button variant="primary" type="button" onClick={e=>onSubmit()}>
-            Save
-          </Button>
-          {' '}
-          <Button variant="primary" type="button" onClick={e=>addDetail()}>
-            Add Detail
-          </Button>
-          {' '}
-          <Button variant="primary" type="button" onClick={e=>(history.push(`/jobs/${jobId}/estimates/${estimateId}`))}>
-            Cancel
-          </Button>
-        </Form>
+        <FormInput type='input' label='Name' placeholder='Enter name' name='name' value={name} onChange={onChange}/>
+        <FormInput type='input' label='Description' placeholder='Description' name='description' value={description} onChange={onChange}/>
+        <h4>Estimate Details</h4>
+        {estimateDetailsData.map(detail =>(
+          <>
+            <EstimateDetailForm key={detail.key} recordKey={detail.key} estimateDetails={estimateDetailsData} setEstimateDetailData={setEstimateDetailData}></EstimateDetailForm>
+          </>
+        ))}
+        <Button variant='primary' type='button' onClick={e=>onSubmit()}>
+          Save
+        </Button>
+        {' '}
+        <Button variant='primary' type='button' onClick={e=>addDetail()}>
+          Add Detail
+        </Button>
+        {' '}
+        <Button variant='primary' type='button' onClick={e=>(history.push(`/jobs/${jobId}/estimates/${estimateId}`))}>
+          Cancel
+        </Button>
+      </Form>
     </Container>
   );
 }

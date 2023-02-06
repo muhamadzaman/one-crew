@@ -1,11 +1,11 @@
-import { Container, Table, Stack, Button } from "react-bootstrap";
-import React, { useEffect, useState, Fragment } from "react";
-import { getEstimate, deleteEstimate } from "../../api/estimate";
+import { Container, Table, Stack, Button } from 'react-bootstrap';
+import React, { useEffect, useState, Fragment } from 'react';
+import { getEstimate, deleteEstimate } from '../../api/estimate';
 import { Link, useParams } from 'react-router-dom';
-import EstimateDetail from "./EstimateDetail";
+import EstimateDetail from './EstimateDetail';
 import groupBy from '../../utils/groupBy'
-import { canEdit } from "../../services/AuthenticationForApiService";
-import history from "../../history.js";
+import { canEdit } from '../../services/AuthenticationForApiService';
+import history from '../../history.js';
 
 const EstimateDetails = () => {
   const { jobId, estimateId } = useParams();
@@ -41,9 +41,9 @@ const EstimateDetails = () => {
 
   return (
     <Stack gap={3}>
-      <Container className="mt-3">
-        <Stack direction="horizontal" gap={3}>
-          <div className="ms-auto">
+      <Container className='mt-3'>
+        <Stack direction='horizontal' gap={3}>
+          <div className='ms-auto'>
           </div>
         </Stack>
       </Container>
@@ -53,7 +53,7 @@ const EstimateDetails = () => {
           <thead>
             <tr>
             <td colSpan={7}>
-              <div className="estimate-head">
+              <div className='estimate-head'>
                 <div>
                   <p><strong> Estimate for</strong></p>
                   <p>{job?.name}</p>
@@ -91,7 +91,7 @@ const EstimateDetails = () => {
           </tbody>
         </Table>
         { canEdit(user?.id, 'contractor') &&
-          <Button variant="danger" type="button" onClick={() => removeEstimate()}>
+          <Button variant='danger' type='button' onClick={() => removeEstimate()}>
             Delete
           </Button>
         }

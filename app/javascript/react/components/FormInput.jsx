@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form } from "react-bootstrap";
+import { Form } from 'react-bootstrap';
 
 const FormInput = ({ type, label, placeholder, name, value, onChange, error }) => (
-  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Group className='mb-3' controlId='formBasicEmail'>
     <Form.Label>{label}</Form.Label>
     <Form.Control
       type={type}
@@ -11,7 +11,7 @@ const FormInput = ({ type, label, placeholder, name, value, onChange, error }) =
       value={value}
       onChange={onChange}
     />
-    <p className="error">{error}</p>
+    <p className='error'>{error}</p>
   </Form.Group>
 )
 

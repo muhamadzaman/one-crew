@@ -1,6 +1,6 @@
-import { Container, Table, Stack } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import { getJobs } from "../../api/job";
+import { Container, Table, Stack } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { getJobs } from '../../api/job';
 import { Link } from 'react-router-dom';
 
 const JobsList = () => {
@@ -13,10 +13,10 @@ const JobsList = () => {
 
     return (
       <Stack gap={3}>
-        <Container className="mt-3">
-          <Stack direction="horizontal" gap={3}>
+        <Container className='mt-3'>
+          <Stack direction='horizontal' gap={3}>
             <div>Total Jobs: { jobsData.length }</div>
-            <div className="ms-auto">
+            <div className='ms-auto'>
             </div>
           </Stack>
         </Container>
